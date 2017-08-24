@@ -19,9 +19,11 @@
 \usepackage{amsfonts}
 \usepackage{mathtools}
 
+% Lista de acrónimos
+\usepackage[acronym,shortcuts]{glossaries}
+\makeglossaries
+\input{glosario/acronimos_wr}
 
-
-%\usepackage[style=list, number=none]{glossary}
 %\usepackage{titlesec}
 %\usepackage{pailatino}
 
@@ -46,11 +48,10 @@
 % ********************************************************************
 % Re-usable information
 % ********************************************************************
-\newcommand{\myTitle}{Optimización del método del gradiente conjugado precondicionado}
-\newcommand{\myDegree}{Grado en Ingeniería Informática}
+\newcommand{\myTitle}{Arquitectura SoC-FPGA para aplicaciones de sincronzación de altas prestaciones}
+\newcommand{\myDegree}{Máster en en Ciencia de Datos e Ingeniería de Computadores}
 \newcommand{\myName}{Felipe Torres González}
-\newcommand{\myProf}{Mancia Anguita López}
-\newcommand{\myOtherProf}{Mario César Acosta Cobos}
+\newcommand{\myProf}{Antonio Javier Díaz Alonso}
 %\newcommand{\mySupervisor}{Put name here\xspace}
 \newcommand{\myFaculty}{Escuela Técnica Superior de Ingenierías Informática y de
 Telecomunicación\xspace}
@@ -75,10 +76,10 @@ Telecomunicación\xspace}
 
 
 \hypersetup{
-pdfauthor = {\myName (felipet<at>correo.ugr.es},
+pdfauthor = {\myName (felipetg<at>ugr.es},
 pdftitle = {\myTitle},
 pdfsubject = {},
-pdfkeywords = {gradiente conjugado, optimización, avx, simd, cuda, aceleradores}
+pdfkeywords = {soc, fpga, white-rabbit, sincronización, ptp, timing}
 pdfcreator = {latexmk},
 pdfproducer = {pdflatex}
 }
@@ -92,14 +93,6 @@ pdfproducer = {pdflatex}
 \usepackage{colortbl,longtable}
 \usepackage[stable]{footmisc}
 %\usepackage{index}
-
-%\makeindex
-%\usepackage[style=long, cols=2,border=plain,toc=true,number=none]{glossary}
-%\makeglossary
-
-% Definición de comandos que me son tiles:
-%\renewcommand{\indexname}{Índice alfabético}
-%\renewcommand{\glossaryname}{Glosario}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -197,6 +190,7 @@ pdfproducer = {pdflatex}
 \makeatother
 
 \usepackage{pdfpages}
+
 \begin{document}
 \input{portada/portada}
 \input{prefacios/prefacio}
@@ -228,6 +222,7 @@ pdfproducer = {pdflatex}
 %
 %\input{capitulos/08_Conclusiones}
 %
+
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
 %\backmatter
@@ -235,12 +230,13 @@ pdfproducer = {pdflatex}
 %\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
 %\bibliographystyle{miunsrturl}
 %
-%\appendix
+\appendix
 %\input{apendices/manual_usuario/manual_usuario}
 %%\input{apendices/paper/paper}
 %\input{glosario/entradas_glosario}
-%\addcontentsline{toc}{chapter}{Glosario de términos}
-%\printglossary
+\addcontentsline{toc}{chapter}{Lista de Acrónimos}
+\printglossaries
+
 \thispagestyle{empty}
 
 \end{document}
