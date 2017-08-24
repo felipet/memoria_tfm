@@ -4,6 +4,7 @@
 # Author     : Felipe Torres González                 #
 # Created on : 2015-05-04                             #
 # Based on   : [ref1]                                 #
+# Glossaries fix : [ref2]                             #
 #######################################################
 
 LATEX=pdflatex
@@ -15,6 +16,8 @@ SOURCES=$(MAIN).tex Makefile
 FIGURES := $(shell ls imagenes/*)
 OUT=build
 
+SILENT?=
+
 
 all: $(MAIN).pdf
 
@@ -22,18 +25,19 @@ all: $(MAIN).pdf
 	touch .refresh
 
 $(MAIN).pdf: $(MAIN).tex .refresh $(SOURCES) $(FIGURES)
-	$(LATEXMK) -pdf $(MAIN).tex -outdir=$(OUT)
+	$(LATEXMK) $(SILENT) -pdf $(MAIN).tex -outdir=$(OUT)
 
 force:
 	touch .refresh
 	$(MAKE) $(MAIN).pdf
 
-.PHONY: clean force all
+.PHONY: clean force all mrproper
 
 clean:
-	$(LATEXMK) -C $(MAIN).tex
+	$(LATEXMK) -c $(MAIN).tex
 	rm -f $(MAIN).pdfsync
 	rm -rf *~ *.tmp
+mrproper: clean
 	rm -rf $(OUT)
 
 
@@ -43,3 +47,4 @@ clean:
 
 
 # [ref1]=http://blog.plesslweb.ch/post/6628144061/using-latexmk-and-make-for-building-latex
+# [ref2]=https://tex.stackexchange.com/questions/1226/how-to-make-latexmk-use-makeglossaries
