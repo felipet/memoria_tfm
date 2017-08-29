@@ -18,6 +18,9 @@ OUT=build
 
 SILENT?=
 
+PDF_READER=evince
+
+.PHONY: clean force all mrproper
 
 all: $(MAIN).pdf
 
@@ -31,7 +34,8 @@ force:
 	touch .refresh
 	$(MAKE) $(MAIN).pdf
 
-.PHONY: clean force all mrproper
+open: all
+	$(PDF_READER) $(OUT)/$(MAIN).pdf &> /dev/null &
 
 clean:
 	$(LATEXMK) -c $(MAIN).tex
