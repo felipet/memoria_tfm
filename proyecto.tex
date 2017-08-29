@@ -115,6 +115,7 @@ pdfproducer = {pdflatex}
 \definecolor{gray75}{gray}{.75}
 \definecolor{gray45}{gray}{.45}
 \definecolor{gray30}{gray}{.94}
+\definecolor{violet}{RGB}{0,0,153}
 
 \lstset{ frame=Ltb,
      framerule=0.5pt,
@@ -191,6 +192,15 @@ pdfproducer = {pdflatex}
 
 \usepackage{pdfpages}
 
+% Comentarios en línea a color
+\newcommand{\incomment}[1]{\textcolor{violet}{\textit{#1}}}
+
+% Cambio de los símbolos para las listas
+\renewcommand{\labelitemi}{$\diamond$}
+\renewcommand{\labelitemii}{$\bullet$}
+\renewcommand{\labelitemiii}{$\circ$}
+\renewcommand{\labelitemiv}{$\cdot$}
+
 \begin{document}
 \input{portada/portada}
 \input{prefacios/prefacio}
@@ -205,31 +215,24 @@ pdfproducer = {pdflatex}
 \mainmatter
 \setlength{\parskip}{5pt}
 
-%\input{introduccion/01_Introduccion}
+\input{introduccion/01_Introduccion}
+\input{desarrollo/02_Sincronizacion}
 %\input{conclusion}
 %\input{referencias}
 %\addcontentsline{toc}{chapter}{Blibiografía}
 %
 %
 %
-%\input{capitulos/04_Analisis}
-%
-%\input{capitulos/05_Diseno}
-%
-%\input{capitulos/06_Implementacion}
-%
-%\input{capitulos/07_Pruebas}
-%
-%\input{capitulos/08_Conclusiones}
-%
 
 %%\chapter{Conclusiones y Trabajos Futuros}
 %
 %\backmatter
 %%\nocite{*}
-%\bibliography{bibliografia/bibliografia}\addcontentsline{toc}{chapter}{Bibliografía}
-%\bibliographystyle{miunsrturl}
-%
+\addcontentsline{toc}{chapter}{Bibliografía}
+\bibliographystyle{plain}
+\bibliography{bibliografia/wr_bib}
+
+
 \appendix
 %\input{apendices/manual_usuario/manual_usuario}
 %%\input{apendices/paper/paper}
