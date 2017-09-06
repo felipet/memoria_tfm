@@ -1,11 +1,12 @@
 \chapter{Análisis limitaciones actuales}
 
 \incomment{Antes de esto se deben haber explicado las arquitecturas de 
-referencia, si no hacerlo aquí.}
+referencia WR, si no hacerlo aquí.}
 
 El proyecto \gls{wr} ofrece dos tipos de arquitectura como referencia: la 
 orientada a dispositivos que actúen como \gls{bc}, y la enfocada a nodos 
-finales \gls{oc}. En la sección ?? se ha visto que para la primera se cuenta 
+finales \gls{oc}. En la sección \ref{sec:wr} \incomment{esto no es verdad aún} 
+se ha visto que para la primera se cuenta 
 con un dispositivo de referencia, el \gls{wrs}, que implementa la arquitectura 
 de \gls{bc} y en la cual se centra el desarrollo \textit{oficial}. La segunda 
 se materializa en la tarjeta \gls{spec} como ejemplo básico de nodo \gls{wr}.
@@ -16,6 +17,9 @@ desarrollo de las arquitecturas de referencia y en el diseño de nuevos tipos de
 arquitecturas que solucionen las deficiencias presentes en los diseños 
 iniciales.
 
+\incomment{con ese comentario quiero dejar claro que parte del trabajo 
+mencionado corresponde a otras personas pero de forma sutil}
+
 Aunque la estrategía no es la misma si se habla de la arquitectura de 
 \textit{switch} que si se hace de la de nodo, si es cierto que hay una 
 corriente que se comparte en ambos desarrollos: la utilización de los nuevos 
@@ -25,8 +29,9 @@ las prestaciones del sistema sin elevar la complejidad del mismo en exceso.
 En el caso del \gls{wrs} existente se han detectado varios problemas por la 
 gran complejidad del diseño \textit{hardware} que tiene el circuito 
 electrónico. 
-Uno de ellos es la comunicación entre el procesador ARM y el circuito lógico 
-implementado en la lógica de la \gls{fpga}. Gracias a la mejora en la 
+Uno de ellos es la comunicación entre el procesador ARM y el circuito  
+implementado en la lógica reconfigurable de la \gls{fpga}. Gracias a la mejora 
+en la 
 tecnología de fabricación se consiguen actualmente sistemas que integran tanto 
 \gls{fpga} como microprocesador en un único chip reduciendo costes y 
 complejidad de desarrollo.
@@ -53,21 +58,19 @@ continuación se pueden incorporar en la arquitectura tipo \textit{switch}.
 \incomment{contextualizar lo siguiente}
 El primer paso para poder plantear mejoras a la arquitectura de nodo y al 
 rendimiento de la sincronización en los mismos es establecer el punto de 
-partida. Para ello he realizado una labor de análisis de una arquitectura 
+partida. Para ello se ha realizado una labor de análisis de una arquitectura 
 actual de nodo basada en un diseño similar al de la tarjeta \textit{spec} pero 
 que ya presenta una serie de mejoras.
 
-%\input{teoria/05_01_wrc2p_len}
-
-El nodo utilizado como punto de partida es el WR-LEN \incomment{citar} 
+El nodo utilizado como punto de partida es el WR-LEN \cite{website:len}
 desarrollado por Seven Solutions. Dicho dispositivo incorpora una versión 
 mejorada del \gls{wrc} denominado \gls{wrc2p} cuya principal característica es 
 la inclusión de un segundo puerto físico a la arquitectura de nodo.
 
 \subsection{White Rabbit Core Dual Port}
 
-\incomment{añadir refs}
-El \gls{wrc2p} es una extensión de la arquitectura para nodos \gls{wr} 
+El \gls{wrc2p} \cite{felipe16} es una extensión de la arquitectura para nodos 
+\gls{wr} 
 denominada \acrlong{wrc} \incomment{refs} que añade una segunda interfaz física 
 Ethernet a la arquitectura básica mono-puerto. En la implementación actual, la 
 referencia temporal es única para ambos puertos, lo que supone que el 
@@ -94,7 +97,7 @@ disponibles por equipo.
 La Figura \ref{fig:wrpcdp} muestra como se organizan los módulos para la 
 arquitectura de \gls{fpga}. Con respecto al diseño de referencia se realiza una 
 duplicación de los componentes principales de la lógica de \gls{wr}: 
-\textit{endpoint}, multiplexor WR, mini-NIC \incomment{se menciona antes nic?} 
+\textit{endpoint}, multiplexor WR, mini-NIC
 y los módulos de RAM. Sin embargo el bloque para el procesador embebido se 
 mantiene, realizando únicamente cambios a nivel de \textit{sw}. Con ello se 
 consigue reducir el número de puertas necesarias, algo clave para alojar la 
@@ -128,6 +131,9 @@ referencia de tiempo local se mantiene con respecto a la utilizada en el
 de 62.5 MHz necesaria, si no que se aprovecha uno de los \gls{pll} internos de 
 la \gls{fpga} para ello. \incomment{que hice con los resultados?}
 
+\incomment{debería decir algo más de la electrónica, es cerrado así que tampoco 
+quiero pasarme...}
+
 \subsection{Experimentos de escalabilidad}
 
 Para evaluar las limitaciones del \gls{wrc2p} en cuanto a prestaciones y 
@@ -135,10 +141,18 @@ escalabilidad realicé una serie de experimentos encadenando múltiples nodos
 \gls{wr}. A través del análisis de la señal de reloj de salida producida por 
 la lógica de \gls{wr} se pueden obtener indicadores de como de estable es el 
 proceso de sincronización en cada nodo, o dicho de otra forma, cuanto ruido 
-electromagnético se añade a la señal fundamental de \gls{wr} por cada salto. 
-Dichos resultados permiten establecer los límites de la implementación 
+electromagnético se añade a la señal fundamental de \gls{wr} por cada salto. La 
+hipótesis de partida es que debido al ruido electromagnético y demás fuentes 
+posibles de inestabilidad debe de existir un número máximo de nodos 
+sincronizables bajo las condiciones de exactitud de WR, es decir, en algún 
+momento se perderá el sub-nanosegundo. Además, si el aumento del nivel de ruido 
+es alto, llegará un momento en el que ni siquiera sea posible sincronizar, 
+debido a que la frecuencia recuperada del enlace esté fuera de rango para el 
+bucle de control que disciplina el oscilador del nodo. Para comprobar dichas 
+hipótesis se han propuesto una serie de experimentos cuyos resultados deben 
+permitir establecer los límites de la implementación 
 (comprobar si se cumple la exactitud sub-nanosegundo) y detectar las 
-deficiencias o mejoras posibles a fin de poder mejorar el diseño existente.
+deficiencias o mejoras posibles a fin de mejorar el diseño existente.
 
 \begin{figure}
 	\centering
@@ -152,7 +166,8 @@ deficiencias o mejoras posibles a fin de poder mejorar el diseño existente.
 \end{figure}
 
 
-Hay varios para haber utilizado la arquitectura basada en nodo, y en concreto 
+De las alternativas disponibles en el universo de los dispositivos WR, se ha 
+utilizado la arquitectura basada en nodo, y en concreto 
 WR-LENs para realizar este tipo de pruebas: por un lado, los resultados 
 obtenidos se pueden extrapolar a otros diseños como el del \gls{wrs}. Esto se 
 debe a que el mecanismo de sincronización es prácticamente el mismo en ambas 
@@ -163,25 +178,28 @@ llegar a conectar un elevado número de nodos en cascada (hasta 18) permitiendo
 así observar el comportamiento de la tecnología en una red con un gran número 
 de saltos (o \textit{hops}).
 
-El primer resultado que se buscaba era observar el número de nodos que podían 
-llegar a sincronizarse, aún cuando no se consiga una exactitud subnanosegundo. 
+El primer experimento está pensado para comprobar si efectivamente la 
+sincronización se deteriora hasta el punto de no lograr sincronizar un equipo 
+(aunque sea fuera del nanosegundo de diferencia).
 Para ello se desplegó una red de WR-LEN conectadas en cadena, tal como muestra 
 la Figura \ref{fig:chainschema}. Para comprobar la exactitud de la 
 sincronización en los puntos elegidos, se toma el reloj de salida del nodo 
 maestro como referencia y el reloj del nodo esclavo i-ésimo, y con la ayuda de 
 un osciloscopio de alta resolución se toman muestras de la diferencia en el 
-dominio del tiempo entre los flancos de subida de las señales de reloj 
-utilizadas.
+dominio del tiempo entre los flancos de subida de las señales de reloj o de los 
+PPSs.
 
-\incomment{hablar del proc. de calibración y decir que se ha calibrado aquí.}
+\incomment{hablar del proc. de calibración (o mejor en la parte de ruido como 
+en retos?) y decir que se ha calibrado aquí.}
 
 Para comprobar si un nodo logra sincronizarse, además de observar las señales 
 de salida, se debe consultar el monitor de estado de \textit{wr}. En la Figura 
-?? se incluye una captura de dicho monitor. \incomment{explicar lo que haya si 
-lo hay...} Como se ha mencionando anteriormente, este primero experimento busca 
+\ref{fig:lengui} se incluye una captura de dicho monitor. \incomment{explicar 
+el contenido del monitor si hay ganas} Como se ha mencionando anteriormente, 
+este primero experimento busca 
 determinar en que momento un nodo es incapaz de sincronizarse con el resto de 
 la red. Para determinarlo, se debe ir conectando uno a uno cada dispositivo y 
-comprobar que tanto el estado de la sincronización es \textit{Track-Phase}. 
+comprobar el estado de la sincronización es \textit{Track-Phase}. 
 Además se puede ir comprobando que la diferencia en tiempo entre las señales de 
 \gls{pps} del maestro \textit{free-running} y de cada nodo sea inferior al 
 nanosegundo. Las pruebas se han tomado por período de una hora y cada 
@@ -229,7 +247,8 @@ nos podemos hacer una idea del ruido presente en el sistema y con el segundo se
 comprueba cuando, en el peor de los casos, la sincronización pierde en algún 
 momento el nanosegundo de exactitud. ¿Por qué no interesa el valor medio? Al 
 principio de la sección se ha mencionado que se han utilizado los mismos 
-parámetros de calibración para todos los nodos. Esto es algo típico y que 
+parámetros de calibración para todos los nodos \incomment{esto no es cierto 
+aún}. Esto es algo típico y que 
 funciona bastante bien cuando nos encontramos dentro de un escenario usual de 
 red. Sin embargo, es totalmente posible realizar una calibración por nodo 
 consiguiendo así que el valor medio esté centrado en 0. Dado que el foco de 
@@ -249,11 +268,16 @@ sub-nanosegundo se consigue hasta el nodo 12º. Aunque los siguientes nodos se
 encuentran \textit{en media} dentro de rango, el análisis del peor de los casos 
 muestra que es a partir del nodo 12º cuando no se puede asegurar que la 
 diferencia entre la marca temporal del maestro y la del nodo sea siempre menor 
-del ns. Aún así los valores medios pueden ser interesantes para aplicaciones 
+del ns \textit{explicar como se calcula eso que no es trivial}. Aún así los 
+valores medios pueden ser interesantes para aplicaciones 
 que no sean críticas y permitan cierta tolerancia a este fenómeno.
 El otro resultado importante al que se llegó fue que a partir del nodo 18º no 
 se consigue pasar de la fase de sintonización por lo que \gls{wr} no puede 
-funcionar.
+funcionar. Es decir, se comprobó que la hipótesis era cierta y el incremento 
+del nivel de ruido por salto ocasiona un deterioro constante de la distribución 
+de tiempo que llega hasta el punto de ser imposible sincronizar sin realizar 
+ajustes en el algoritmo de control para relajar las condiciones del bucle de 
+control.
 
 Tras observar ambos resultados, se realizó una toma de medidas de desfase entre 
 nodos clave: 10º, 15º y 18º. Los primeros nodos mostraban valores bajos de 
@@ -263,9 +287,11 @@ comienza a ser muy elevado. Los resultados mostrados en la Tabla
 \ref{tab:cascada1} ayudan a comprender que falla para que a partir del nodo 18º 
 no se consiga sintonizar. 
 
-\incomment{hablar del pll y relacionar con la teoría cuando esté}
+\incomment{hablar del pll, ancho de banda y relacionar con la teoría cuando 
+esté}
 
-Otro de las pruebas realizadas busca comprobar la hipótesis de que la longitud 
+Otro de las pruebas realizadas busca comprobar una de las hipótesis del procolo 
+WWR de que la longitud 
 del enlace de fibra óptica no tiene un efecto considerable sobra la precisión 
 de la sincronización (siempre considerando una longitud dentro del rango de 
 operación de los \gls{sfp}s utilizados). Para ello se replicó el montaje en 
@@ -365,7 +391,9 @@ dispersión en torno a los 200 ps.
 \subsubsection{Conclusiones}
 
 Los experimentos realizados sobre una red de dispositivos \gls{wr} conectados 
-en cascada han arrojado varios resultados interesantes:
+en cascada han arrojado varios resultados interesantes y han permitido 
+comprobar las hipótesis acerca del efecto del ruido en el sistema y us 
+consecuencias:
 
 \begin{itemize}
 	\item Se ha realizado una caracterización de la implementación \gls{wrc2p}, 
@@ -397,11 +425,12 @@ Además he podido comprobar de primera mano que aspectos son mejorables y la
 posible línea de trabajo futuro. En cuanto a la arquitectura de nodo, he 
 detectado una serie de problemas que merece la pena discutir. En primer lugar, 
 hay que entender ciertas decisiones del diseño inicial que se pudieron tomar 
-para realizar un diseño que fuera sencillo y mantuviese los costes bajos. Con 
+para realizar un sistema que fuera sencillo y mantuviese los costes bajos. Con 
 esto me refiero a la ausencia de un microprocesador físico externo que permita 
 obtener un mayor rendimiento y flexibilidad de desarrollo para el \textit{sw} 
 de la plataforma. El código \textit{sw} actual de un nodo se ejecuta en 
-procesador embebido LM32. Este, cuenta con unos recuros muy limitados y se nota 
+procesador embebido, el LM32. Este, cuenta con unos recuros muy limitados y se 
+nota 
 bastante a la hora de desarrollar para esta plataforma. Al incorporar una 
 \gls{fpga} de perfil bajo, el número de recursos disponibles es limitado: hay 
 pocas puertas lógicas disponibles y el número de bloques de memoria RAM es 
