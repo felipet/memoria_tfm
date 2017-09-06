@@ -4,11 +4,11 @@ El trabajo realizado en el marco del TFM se ha llevado a cabo entre las
 instalaciones del edificio CITIC de la UGR y el laboratorio de sincronización 
 de la empresa Seven Solutions (en el edificio CETIC de la UGR). Dada la 
 naturaleza de este tipo de desarrollos se necesita una gran cantidad de 
-material y herramientas que no suelen ser baratas por lo que no siempre es 
-fácil disponer de ellas. En resumen se han utilizado equipos \gls{wr} como el 
+material y herramientas que no suelen ser baratos, por lo que no siempre es 
+fácil disponer de ellos. En resumen se han utilizado equipos \gls{wr} como el 
 WR-LEN y el WR-ZEN, equipos de medición como osciloscopios y analizadores de 
 \textit{Phase Noise}, multitud de fibras y demás material para formar redes WR, 
-etc.
+entre otras cosas.
 
 La metodología de desarrollo ha seguido un modelo en cascada: primero se ha 
 realizado una labor de análisis de la arquitectura actual en los nodos WR y de 
@@ -16,13 +16,15 @@ una implementación concreta de dicha arquitectura. Para ello se han realizado
 una serie de experimentos de caracterización que permiten extraer datos 
 interesantes acerca de las limitaciones de la tecnología actual. Luego se 
 introduce el nuevo desarrollo de una arquitectura basada en la familia de 
-\gls{soc} Zynq-7000 de Xilinx y se explican las posiblidades futuras de mejora 
-basadas en esta nueva arquitectura. Por último se realizan varios experimentos 
-sobre el desarrollo inicial basado en Zynq para dejar una línea abierta sobre 
-el trabajo futuro de mejora de este diseño.
+\gls{soc} Zynq-7000 de Xilinx que se está realizando de forma conjunta entre el 
+grupo de sincronización de la UGR y Seven Solutions y se llegan a varias 
+conclusiones para aportar mejoras a la implementación actual. Por otra parte se 
+analizar el aspecto \textit{hardware} relativo a la circuitería de reloj y se 
+proponen una serie de mejoras en base a ese análisis y a una serie de 
+resultados obtenidos tras una labor de caracterización. 
 
-Se ha trabajado con varios dispositivos WR durante el desarrollo de este 
-trabajo:
+A continación se hace un listado del conjunto de herramientas utilizado durante 
+el desarrollo de este TFM. En primer lugar mencionar los equipos WR utilizados:
 
 \begin{itemize}
 	\item WRS \incomment{decir algo y fotos}
@@ -31,7 +33,7 @@ trabajo:
 \end{itemize}
 
 Además han sido necesarios múltiples dispositivos de medida de alta resolución 
-debido a las características tan exigentes del procolo de sincronización WR:
+debido a las características tan exigentes del protocolo de sincronización WR:
 
 \begin{itemize}
 	\item Osciloscopio Tektronix DPO-7354 \incomment{decir algo}
@@ -50,7 +52,7 @@ aparatos utilizados:
 	\item \incomment{mencionar la morralla más normal}
 \end{itemize}
 
-Además de todos los componentes físicos, también han sido necesarias múltiples 
+A parte de todos los componentes físicos, también han sido necesarias múltiples 
 herramientas \textit{software}:
 
 \begin{itemize}
@@ -82,7 +84,7 @@ herramientas \textit{software}:
 	usuario el desarrollo de la lógica que implemente la funcionalidad concreta.
 \end{itemize}
 
-Dada la complejidad de desarrollo para este tipo de sistemas, es necesaria una 
-labor de aprendizaje bastante extensa a fin de manejar con soltura el conjunto 
-de herramientas sw y los distintos dispositivos \textit{hw}, tanto equipos WR 
-como de medición.
+Dada la complejidad de desarrollo para este tipo de sistemas, ha sido necesaria 
+una labor de aprendizaje bastante extensa a fin de manejar con soltura el 
+conjunto de herramientas sw y los distintos dispositivos \textit{hw}, tanto 
+equipos WR como de medición que han sido listados.
