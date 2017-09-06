@@ -1,0 +1,88 @@
+\chapter{Metodología de trabajo y herramientas}
+
+El trabajo realizado en el marco del TFM se ha llevado a cabo entre las 
+instalaciones del edificio CITIC de la UGR y el laboratorio de sincronización 
+de la empresa Seven Solutions (en el edificio CETIC de la UGR). Dada la 
+naturaleza de este tipo de desarrollos se necesita una gran cantidad de 
+material y herramientas que no suelen ser baratas por lo que no siempre es 
+fácil disponer de ellas. En resumen se han utilizado equipos \gls{wr} como el 
+WR-LEN y el WR-ZEN, equipos de medición como osciloscopios y analizadores de 
+\textit{Phase Noise}, multitud de fibras y demás material para formar redes WR, 
+etc.
+
+La metodología de desarrollo ha seguido un modelo en cascada: primero se ha 
+realizado una labor de análisis de la arquitectura actual en los nodos WR y de 
+una implementación concreta de dicha arquitectura. Para ello se han realizado 
+una serie de experimentos de caracterización que permiten extraer datos 
+interesantes acerca de las limitaciones de la tecnología actual. Luego se 
+introduce el nuevo desarrollo de una arquitectura basada en la familia de 
+\gls{soc} Zynq-7000 de Xilinx y se explican las posiblidades futuras de mejora 
+basadas en esta nueva arquitectura. Por último se realizan varios experimentos 
+sobre el desarrollo inicial basado en Zynq para dejar una línea abierta sobre 
+el trabajo futuro de mejora de este diseño.
+
+Se ha trabajado con varios dispositivos WR durante el desarrollo de este 
+trabajo:
+
+\begin{itemize}
+	\item WRS \incomment{decir algo y fotos}
+	\item WR-ZEN \incomment{decir algo}
+	\item WR-LEN \incomment{decir algo}
+\end{itemize}
+
+Además han sido necesarios múltiples dispositivos de medida de alta resolución 
+debido a las características tan exigentes del procolo de sincronización WR:
+
+\begin{itemize}
+	\item Osciloscopio Tektronix DPO-7354 \incomment{decir algo}
+	\item Medidor de Phase Noise Microsemi 3120A \incomment{decir algo}
+	\item Frecuencímetro/Contador Keysight 53230 \incomment{decir algo}
+\end{itemize}
+
+El material típico para realizar las conexiones de fibra o controlar los 
+aparatos utilizados:
+
+\begin{itemize}
+	\item SFPs \incomment{explicar algo}
+	\item SFPs de cobre
+	\item Fibra óptica, bobinas...
+	\item Cables de RF \incomment{decir algo de sma, smc y esas mierdas}
+	\item \incomment{mencionar la morralla más normal}
+\end{itemize}
+
+Además de todos los componentes físicos, también han sido necesarias múltiples 
+herramientas \textit{software}:
+
+\begin{itemize}
+	\item Sistema operativo GNU/Linux, enconcreto Ubuntu. Por suerte la mayoría 
+	de herramientas de desarrollo para el ámbito de WR están preparadas para 
+	este tipo de SO. Se necesitan versiones concretas (la LTS de turno) ya que 
+	los proyectos suelen estar preparados para compilar bajo unas condiciones 
+	de paquetes y versiones específicas. Intentar usar versiones más modernas u 
+	otros SO requiere un gran manejo y una gran inversión de tiempo.
+	
+	\item Herramientas de control de versiones, como Git, para la gestión de 
+	los repositorios disponibles en la web de \gls{ohwr} \cite{website:ohwr} 
+	así como para los desarrollos propios.
+	
+	\item Múltiples conjuntos de herramientas de compilación cruzada 
+	(\textit{toolchains}) para compilar el \textit{sw} para los dispositivos WR.
+	
+	\item Herramientas de síntesis para \gls{hdl} de Xilinx. En concreto se ha 
+	utilizado ISE para la familia Spartan 6 y Vivado para las familias Artix-7 
+	y Zynq-7000.
+	
+	\item También son necesarias muchas pequeñas herramientas para acceso a 
+	terminales serie o programación de dispositivos. Caben destacar algunas de 
+	la comunidad \gls{wr} como \textit{hdl-make} que permite compilar proyectos 
+	de ISE sin necesidad de utilizar la interfaz gráfica y \textit{wbgen2} que 
+	se utiliza para generar módulos HDL para el bus Wishbone, en concreto dicha 
+	herramienta genera 
+	la lógica de control para acceso a bus y la interfaz del módulo, dejando al 
+	usuario el desarrollo de la lógica que implemente la funcionalidad concreta.
+\end{itemize}
+
+Dada la complejidad de desarrollo para este tipo de sistemas, es necesaria una 
+labor de aprendizaje bastante extensa a fin de manejar con soltura el conjunto 
+de herramientas sw y los distintos dispositivos \textit{hw}, tanto equipos WR 
+como de medición.
