@@ -2,7 +2,7 @@
 
 El término sincronización hace referencia a la coordinación entre los múltiples 
 elementos que componen un sistema para llevar a cabo alguna acción de forma 
-simultánea en el tiempo. Mantener una noción común de tiempo es un factor clave 
+organizada en el tiempo. Mantener una noción común de tiempo es un factor clave 
 en el que se basan muchas de las tecnologías que empleamos y de las que 
 dependemos en nuestro día a día.
 
@@ -28,10 +28,6 @@ Además de la distribución de tiempo, el campo del posicionamiento terrestre es
 otro de los grandes interesados en las tecnologías de sincronización. 
 \incomment{Hablar de GNSS}. Para estos sistemas, \incomment{...}
 
-
-
-\section{Motivación y Objetivos}
-
 El gran interés mostrado tanto en el ámbito académico como en el industrial por 
 mejorar los protocolos de sincronización actuales conlleva que cualquier 
 trabajo en la línea de la sincronización tenga gran repercusión. En concreto la 
@@ -39,6 +35,8 @@ extensión del protocolo \gls{ptp} conocida como \gls{wr} está recibiendo mucha
 atención en los últimos años gracias al buen equilibrio entre prestaciones y 
 coste de la tecnología así como a la existencia de diseños de referencia 
 abiertos que fomentan el desarrollo de terceros.
+
+\section{Organización del trabajo}
 
 La línea de este Trabajo Fin de Máster se encuadra en la dirección de la 
 temática de mi futura tésis doctoral. Con la realización de este proyecto he 
@@ -50,40 +48,89 @@ cuales son los puntos críticos que están limitando la mejora tanto en exactitu
 como en precisión alcanzable por dicho protocolo. Por el otro, se ha podido 
 asentar la base de conocimiento tanto en la propia tecnología de sincronización 
 como en los aspectos relacionados: diseño basado en lógica reconfigurable, 
-sistemas de recuperación de reloj, fuentes de ruido electromagnético, etc. que 
-será de vital importancia para la consecución final de la citada tésis doctoral.
+sistemas de recuperación de reloj, fuentes de ruido electromagnético, etc. 
+Temas que serán de clave en la consecución final de la citada tésis doctoral.
 
-Por tanto, esta memoria refleja los primeros pasos necesarios para ello. En los 
-capítulos 2 y 3 se introducen los conceptos teóricos clave para entender el 
-trabajo. Se incluyen nociones clave para comprender el problema de la 
-sincronización y las soluciones más relevantes que se han utilizado hasta la 
-fecha. También se habla brevemente de temas de electrónica y de como se mide el 
-ruido en estos sistemas \incomment{no me gusta}. En el capítulo 4 se habla de 
-los componentes tecnológicos utilizados: tarjetas, entornos y herramientas de 
-desarrollo, etc. El quinto capítulo contiene en análisis primigenio realizado 
-para detectar puntos flacos y posibles cosas a mejorar en la arquitectura de un 
-dispositivo \gls{wr}. El sexto capítulo trata la propuesta de la nueva 
-arquitectura basada en \gls{soc} para nodos \gls{wr} y detalla algunas de las 
-mejoras realizadas hasta la fecha. Los últimos capítulos contienen ideas para 
-lo que será el trabajo futuro en esta línea y la conclusiones alcanzadas 
-durante la realización de este trabajo.
+Por tanto, esta memoria refleja los primeros pasos necesarios para ello. La 
+estructura de la misma se divide en una serie de ocho capítulos donde se 
+introducen los conceptos teóricos clave para entender el contenido de esta 
+memoria, una rápida revisión al estado de la técnica en la materia de la 
+sincronización para redes basadas en el intercambio de paquetes, y los aspectos 
+relativos al desarrollo propiamente dicho.
 
-Dado que este trabajo se engloba dentro de una línea más extensa que llevará 
-varios años, se han planteado una serie de objetivos que tiene sentido alcanzar 
-durante la realización de este trabajo y que se encuadran dentro de lo que será 
-la posterior realización de la tesis doctoral:
+El primer capítulo realiza una introducción a los conceptos relativos al mundo 
+de la sincronización en redes. También se contextualiza el trabajo y se habla 
+de la importancia que tiene esta temática en las tecnologías presentes y 
+futuras. Por último se definen una serie de objetivos marcados para el 
+desarrollo de este TFM.
+
+En el segundo capítulo se explica la metodología de trabajo seguida y se 
+detallan tanto las herramientas \textit{hardware} y \textit{software} como el 
+equipo de laboratorio que se ha utilizado.
+
+Los capítulos tercero y cuarto contienen aspectos teóricos relativos a los 
+sistemas de distribución de tiempo que son necesarios para entender esta 
+memoria. También se introducen brevemente algunos conceptos sobre estabilidad y 
+medidas que se utilizan para caracterizar este tipo de sistemas. Además se hace 
+un rápido repaso por el estado de la técnica de los protocolos de 
+sincronización estándar más relevantes a lo largo de la historia de la 
+computación relacionados con la tecnología \gls{wr} sobre la que se centra este 
+trabajo.
+
+Una vez se han introducido todos los aspectos teóricos, se realiza un análisis 
+y caracterización de la arquitectura para nodos WR en el quinto capítulo. Los 
+resultados incluidos sirven de motivación para el desarrollo de la nueva 
+arquitectura propuesta en el capítulo sexto. En este capítulo se explica las 
+bases de la nueva arquitectura para nodos basada en sistemas SoC-FPGA, 
+explicando el desarrollo hecho hasta la fecha y realizando una serie de 
+propuestas de mejora para la línea de trabajo futuro.
+
+El capítulo séptimo pone el foco en la parte \textit{hardware} del sistema, 
+analizando el sistema de recuperación y generación de reloj en la que se 
+asienta la tecnología WR. Además se incluyen una serie de resultados obtenidos 
+del trabajo de caracterización y prueba de mejoras que se está realizando en la 
+línea.
+
+Para cerrar se incluyen las conclusiones generales del trabajo y una breve 
+discusión sobre la línea de trabajo futura con motivo de continuar lo que ha 
+sido el desarrollo realizado en el marco de una futura tésis doctoral.
+
+\section{Objetivos}
+
+Dada la gran complejidad que tienen los sistemas WR, se trata de proyectos que 
+los componen múltiples personas. El objetivo de este trabajo ha sido contribuir 
+en las áreas más cercanas a lo que será mi línea de tésis para poder adquirir 
+el conocimiento necesario para poder afrontar lo que será el futuro desarrollo 
+del citado trabajo. Los objetivos se reparten en varias áreas de desarrollo a 
+fin de poder conocer el sistema desde los tres puntos básicos: 
+\textit{firmware} para FPGA, \textit{software} y \textit{hardware}.
 
 \begin{itemize}
 	\item Analizar el estado de la técnica de los principales protocolos 
 	utilizados en sincronización de redes Ethernet, haciendo hincapié en el 
-	nuevo protocolo denominado \gls{wr}.
+	nuevo protocolo denominado \gls{wr} para adquirir el conjunto de 
+	conocimientos necesario para emprender un desarrollo en esta línea de 
+	trabajo.
 	
-	\item Analizar las limitaciones actuales de los nodos \gls{wr}.
+	\item Analizar las limitaciones actuales de los nodos \gls{wr}. Esto 
+	necesita de una labor de análisis de como se contruye la arquitectura que 
+	forma un nodo y la realización de una serie de pruebas que permita 
+	caracterizar el comportamiento del mismo.
 	
-	\item Proponer mejoras a la arquitectura de referencia de nodo.
+	\item Proponer mejoras a la arquitectura de referencia de nodo. Actualmente 
+	se está realizando desde el grupo de distribución de tiempo de la UGR y 
+	desde la empresa Seven Solutions el desarrollo de la arquitectura basada en 
+	SoC-FPGA para nodos WR. Es importante entender este nuevo tipo de 
+	arquitectura para poder contribuir a su desarrollo y poder realizar un 
+	análisis de que aspectos se necesita mejorar en la implementación actual.
 	
-	\item Analizar el sistema de recuperación de reloj y proponer mejoras para 
-	conseguir aumentar las prestaciones en la sincronización 
+	\item Otro de los objetivos es comprender como trabaja la electrónica 
+	encargada de la recuperación y generación de la señal de reloj fundamental 
+	de WR para realizar mejoras que permitan mejorar aún más la exactitud y 
+	precisión del protocolo.
 \end{itemize}
+
+\incomment{creo que son lo suficientemente ambigüos pero no quedo contento con 
+ellos, acepto sugerencias.}
 
 
