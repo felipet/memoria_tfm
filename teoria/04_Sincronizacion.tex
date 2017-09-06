@@ -1,10 +1,10 @@
 \chapter{Mecanismos de sincronización en redes de computadores}
 
-En este capítulo se detalla las características principales de los mecanismos 
-empleados para la sincronización de equipos en red. Además se introducen los 
-protocolos estándar más extendidos como \gls{ntp} o \gls{ptp} para llegar a una 
-explicación más detallada sobre la extensión de \gls{ptp} conocida como 
-\acrlong{wr}.
+En este capítulo se detallan las características principales de los mecanismos 
+empleados para la sincronización de equipos en red. En concreto se hace 
+referencia a tres protocolos, dos que son estándar ampliamente usados, y se 
+pueden considerar precursores del tercero, que es en el que se centra este 
+trabajo.
 
 Los requisitos demandados por las aplicaciones que necesitan de algún mecanismo 
 de sincronización son bastante heterogéneos. Esto es fácilmente entendible si 
@@ -23,17 +23,8 @@ señal de reloj que se utiliza en los contadores internos de cada nodo.
 
 \section{Referencias de tiempo y frecuencia}
 
-\section{Fuentes de ruido y desfase}
-
-\incomment{aquí o en un capítulo anterior?}
-
-3.1.1 accuracy: The mean of the time or frequency error between the clock under 
-test and a perfect
-reference clock, over an ensemble of measurements. Stability is a measure of 
-how the mean varies with
-respect to variables such as time, temperature, and so on. The precision is a 
-measure of the deviation of the
-error from the mean.
+\incomment{aquí quiero hablar brevemente de relojes atómicos, gnss y los 
+problemas que surgen a la hora de repartir del timing.}
 
 \input{teoria/04_01_ntp}
 \input{teoria/04_02_ptp}

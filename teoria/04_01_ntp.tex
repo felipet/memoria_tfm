@@ -3,8 +3,8 @@
 \textit{\acrlong{ntp}} \cite{Mills1991} es un protocolo estándar de red 
 empleado para la sincronización de relojes en computadores conectados mediante 
 redes conmutadas, que fue diseñado por David L. Mills de la Universidad de 
-Delaware. Su uso se demostró públicamente por primera vez en 1979, en lo que 
-sería una prueba de enlace satelital transatlántico para varios servicios de 
+Delaware. Su uso se demostró públicamente por primera vez en 1979, en una 
+prueba de enlace satelital transatlántico para varios servicios de 
 Internet. Posteriormente, en 1985 se implementó NTPv0 para sistemas tipo Unix 
 donde la estructura para la cabecera y los cálculos para el tiempo de ida y 
 vuelta (o \textit{round-trip time}) y el desfase entre relojes son los que se 
@@ -49,7 +49,7 @@ necesariamente la calidad del servidor.
 	0 se hayan las fuentes de reloj de alta estabilidad como GPSDO o relojes 
 	atómicos. Estas se conectan directamente a los servidores del estrato 1 que 
 	forman los llamados servidores de tiempo primarios. Esta capa provee la 
-	hora UTC al resto de los niveles. Como se puede ver se pueden establecer 
+	hora UTC al resto de los niveles. Como se puede ver, se pueden establecer 
 	enlaces entre equipos del mismo nivel, además, pueden estar conectados a 
 	varios servidores de la capa superior (redundancia). Imagen tomada de 
 	\cite{website:imgNTPtree}}
@@ -81,7 +81,7 @@ relevantes:
 	\item \textbf{Estrato 2 (en adelante)} \\ Los dispositivos de cada estrato 
 	se 
 	sincronizan con el estrato anterior, pudiendo hacerlo con varios servidores 
-	a la vez, y además pueden hacerlo con otros computadores del mismo nivel a 
+	a la vez, y además con otros computadores del mismo nivel a 
 	fin de mejorar la calidad del servicio.
 \end{itemize}
 
@@ -104,6 +104,9 @@ instante de tiempo $T_i$:
 \begin{equation}
 	\theta_i = \frac{(T_{i-2}-T_{i-3}) + (T_{i-1}-T_{i})} {2}
 \end{equation}
+
+\incomment{es un poco lioso lo de verlo hacía atrás, lo he puesto así porque en 
+\cite{Mills1991} viene así pero si lo prefieres lo pongo al estilo de siempre.}
 
 Hay que tener en cuenta que el servidor no tiene por qué contestar a las 
 peticiones del cliente de forma inmediata. El proceso encargado de la gestión 
