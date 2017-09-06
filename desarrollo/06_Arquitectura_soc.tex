@@ -15,7 +15,6 @@ implementación inicial realizada para este tipo de plataforma.
 
 \section{Características del diseño basado en SoC para Xilinx}
 
-\incomment{diseño en cajas, abstracción}
 El diseño basado en SoC permite elevar el nivel de abstracción a la hora de 
 definir los componentes que integrarán el sistema final. En concreto los SoC 
 que incluyen FPGAs tienen la ventaja de ofrecer la flexibilidad de un sistema 
@@ -61,17 +60,22 @@ coste reducido. Los componentes principales de esta familia son los siguientes:
 \end{itemize}
 
 
+\subsection{Arquitectura de la Familia Zynq-7000}
+\incomment{arquitectura zynq-7, hablar un poco de los recursos y de como se 
+organizan los componentes}
 
-\incomment{arquitectura zynq-7}
-
-\incomment{herramientas}
+\subsection{Herramientas de desarrollo de Xilinx}
+\incomment{hablar del nuevo modelo de trabajo basado en vivado y las cajitas}
 
 \section{Migración y desarrollo de una arquitectura de nodo basada en SoC}
 
 El llamado \textit{\acrlong{wr} Zynq Embedded Node} (WR-ZEN) es la primera 
 plataforma que incorpora la nueva arquitectura para nodos basada en SoC. El 
 desarrollo se ha realizado en colaboración entre la empresa Seven Solutions y 
-el grupo de \textit{timing} de la UGR. Dicho dispositivo será utilizado como 
+el grupo de \textit{timing} de la UGR. \incomment{menciono esto para dejar 
+claro que se habla de desarrollo de cosas que no he hecho aunque se menciona de 
+forma ambigüa para dejar abierta la posibilidad de que se haya trabajado en 
+ello}Dicho dispositivo será utilizado como 
 elemento clave en el sistema de distribución de tiempo dentro del proyecto 
 internacional SKA \cite{website:ska}. En concreto formará parte del llamado 
 \textit{Signal and Data Transport (SaDT)} y se encargará de distribuir la señal 
@@ -319,3 +323,5 @@ gran relevancia internacional como SKA, ya que esto favorece la publicación de
 nuevos artículos científicos que tengan interés en la comunidad relacionados 
 con todo la investigación que se está haciendo en torno a este nuevo enfoque 
 para nodos WR.
+
+\incomment{ha quedado corto pero tampoco se donde me puedo estirar más}
