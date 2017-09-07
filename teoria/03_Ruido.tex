@@ -1,17 +1,5 @@
 \chapter{Inestabilidad en la señal de reloj}
 
-\incomment{Creo que un pequeño capítulo sobre temática de ruido y medidas 
-vendría bien para contextualizar el capítulo 7 y sus resultados, básicamente 
-voy a copiar lo que escribí para la memoria de RETOS}
-
-3.1.1 accuracy: The mean of the time or frequency error between the clock under 
-test and a perfect
-reference clock, over an ensemble of measurements. Stability is a measure of 
-how the mean varies with
-respect to variables such as time, temperature, and so on. The precision is a 
-measure of the deviation of the
-error from the mean.
-
 Un sistema de sincronización debe proveer de una noción de tiempo común en el 
 entorno de la red de comunicaciones en que se encuentra. La manera que tiene 
 cada uno de los nodos que forman dicha red de medir el tiempo es mediante el 
@@ -142,4 +130,23 @@ posibles en ese momento.
 
 \incomment{si hay un poco de tiempo mencionar ADEV y demás tipos y explicar 
 rápidamente}
+
+Para cerrar este capítulo me gustaría mencionar la diferencia entre el término 
+exactitud (\textit{accuracy} en la literatura) y el de precisión 
+(\textit{precision}) dado que se suelen confundir bastante entre ellos sobre 
+todo con motivo de la traducción de la literatura existente y es importante 
+tener clara la diferencia en el ámbito de WR. La exactitud de la sincronización 
+hace referencia a la diferencia que podemos medir entre el evento generado por 
+una señal del maestro, el PPS o un flanco de subida del reloj de referencia, y 
+la del esclavo. Si se trabaja en el dominio del tiempo está diferencia se 
+expresa en segundos y en concreto, WR, lo que consigue es que dicha diferencia 
+sea menor al nanosegundo. Por otra parte hay que determinar la variación que 
+sufre dicha diferencia por motivo del \text{jitter} en las señales utilizadas 
+para realizar tal medida. Esto es lo que se denomina precisión, y mide la 
+estabilidad de la señal generada. El objetivo de WR es que se mantenga en el 
+orden del picosegundo, lo que quiere decir que la variación en la señal 
+generada por el dispositivo con respecto a la ideal esté en ese orden de 
+magnitud. Por tanto la estabilidad mide la evolución de la diferencia entre las 
+señales entre equipos sincronizados en función de variables como el tiempo o la 
+temperatura, y la precisión es una medida de la desviación de dicho valor.
 
