@@ -152,7 +152,18 @@ del sistema de ficheros Linux para el arranque de la tarjeta.
 
 \incomment{se puede hablar algo más de los módulos existentes (drivers)}
 
-\incomment{esquema de las etapas de arranque}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.7\linewidth]{imagenes/cargazen}
+	\caption[Diagrama de flujo del arranque del WR-ZEN]{Este diagrama muestra 
+	las etapas en el arranque del WR-ZEN. El primer nivel se encarga de 
+	inicializar los componenes del SoC. El cargador de segunda etapa permite 
+	inicializar el resto de componentes de la tarjeta y arrancar el kernel de 
+	Linux. Por último se inicia el SO con todo el soporte para drivers, 
+	servicios y aplicaciones de usuario.}
+	\label{fig:cargazen}
+\end{figure}
+
 
 Sin embargo, dicho \textit{root filesystem} no es lo único que se necesita para 
 arrancar la tarjeta. Hay que recordar que se trata de un sistema embebido, por 
