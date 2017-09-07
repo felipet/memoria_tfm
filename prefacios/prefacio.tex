@@ -19,14 +19,25 @@
 \end{center}
 
 %\vspace{0.7cm}
-\noindent{\textbf{Palabras clave}: White-Rabbit, Sincronización, PTP}\\
+\noindent{\textbf{Palabras clave}: White-Rabbit, Sincronización, PTP, Zynq, 
+SoC}\\
 
 \vspace{0.7cm}
 \noindent{\textbf{Resumen}}\\
 
-Este proyecto trata sobre \incomment{terminar}
-\incomment{importancia del timing, mencionar algo de wr y hablar de las 
-aplicaciones}
+El presente Trabajo Fin de Máster trata sobre el desarrollo de una nueva 
+arquitectura basada en \textit{System on Chip} (SoC) para nodos White Rabbit 
+(WR). 
+Se analiza la arquitectura básica con la que tradicionalmente se han diseñado 
+este tipo de dispositivos y se proponen una serie de aspectos que pueden ser 
+mejorados gracias a la utilización de nuevas soluciones que integran en una  
+misma plataforma microprocesador y recursos de lógica programable entre otros. 
+Además se hace una revisión y caracterización de la electrónica encargada del 
+sistema de reloj incorporada en los dispositivos WR actuales, y se discuten una 
+serie de mejoras que llevarían a aumentar la precisión que alcanza este 
+protocolo de sincronización. Finalmente se discuten las aplicaciones que se 
+pueden beneficiar de los resultados presentados y se propone la línea de 
+trabajo futuro.
 
 \cleardoublepage
 
@@ -39,18 +50,27 @@ aplicaciones}
 applications}\\
 \end{center}
 \begin{center}
-First name, Family name (student)\\
+Felipe Torres González (student)\\
 \end{center}
 
 %\vspace{0.7cm}
-\noindent{\textbf{Keywords}: Code optimization, assembly, PCGM, CUDA, SIMD, Fortran}\\
+\noindent{\textbf{Keywords}: White-Rabbit, Synchronization, PTP, Zynq, SoC, 
+Timing}\\
 
 \vspace{0.7cm}
 \noindent{\textbf{Abstract}}\\
 
-This project is about the application of the acquired knowledge in many different degree`s subjects in order to optimize an algorithm of resolution of big systems of linear equations, named Preconditioned Conjugate Gradient Method (PCGM). It will apply many techniques of optimization in those areas where the compiler is not able to make the most of the own characteristics of the architecture objective of the build. In addition, it will try to utilise the implicit parallelism in the application that is implemented sequentially with the aim of using processors which profit efficiently the parallelism as the GPUs.
+The new Zynq-based system architecture for White Rabbit (WR) nodes is explained 
+in this thesis. The current WR node desing is analyzed and evaluated looking 
+for an improvement on system flexibility and synchronization performance. The 
+current design based on FPGA is expanded to take advantage of new system 
+architecture of FPGA based SoCs. The state of art of synchronization protocols 
+is also discussed and the major characteristics of the WR protocol. Moreover 
+the current line of improvement of the clocking system is discussed and 
+analyzed with some stability measures. Finally improvements are proposed in 
+order to achieve a better precision of the synchronization accuracy. That will 
+be part of the future work on the line of WR performance improvement.
 
-The used implementation is compared with another Fortran library very utilised in these areas, the NSPCG library, which does not profit completely the power of the calculation that is available. In order to improve the performance with respect to this library, it will be made several efforts. First, it will seek to optimize the CPU’s use by the employment of characteristics as the multimedia instructions that are able to make calculations in a vectorial way. Finally, through the utilization of another typical architecture of a computer as the GPU.
 
 \chapter*{}
 \thispagestyle{empty}
@@ -109,4 +129,22 @@ Y para que conste, expiden y firman el presente informe en Granada a X de Septie
        \vspace{1cm}
 
 
-\incomment{aquí agradecimientos}
+Dada la complejidad que supone trabajar en la temática de la sincronización 
+White Rabbit, existe una gran necesidad de ayuda por parte de compañeros de 
+trabajo o de la comunidad WR. Por ello la lista de personas a las que agradecer 
+su ayuda durante el tiempo que llevo trabajando en esta línea es larga y seguro 
+que fácilmente olvide a alguien. Para evitarlo no haré alusión directa a 
+ninguna persona, si no que agradezco la ayuda prestada tanto desde la comunidad 
+WR, como por el grupo de investigación \textit{Timing Keepers} de la UGR, como 
+a la proveniente de los compañeros de la empresa Seven Solutions. Espero poder 
+devolver la ayuda prestada cuando esté en condiciones de poder esponder las 
+dudas que reciba.
+
+Además me gustaría agradacer la ayuda no técnica a mi familia y amigos, cuyo 
+apoyo permite olvidar los malos ratos que se pasan cuando se trabaja en WR y 
+todo lo que puede fallar lo hace.
+
+Por último agradecer a mi tutor Javier Díaz Alonso el haberme introducido en 
+esta línea de trabajo (aunque puede que algún día cambie de opinión al 
+respecto) además de sus charlas inspiradoras que siempren levantan el ánimo.
+
