@@ -6,7 +6,7 @@ exactitud que podía alcanzar dicho protocolo no era suficiente para las
 aplicaciones con requisitos de altas prestaciones como los sistemas de control 
 o sistemas de medición distribuidos. Para mejorar el rendimiento se propuso el 
 desarrollo de un protocolo denominado \acrlong{ptp}, bajo el estándar 
-\acrshort{ieee} 1588-2002 (año de su publicación) \cite{IEEE1588-2008}. 
+\acrshort{ieee} 1588-2002 (año de su publicación) \cite{IEEE1588_2008}. 
 Actualmente se utiliza la segunda revisión del estándar: IEEE 1588-2008 o 
 \gls{ptp}v2, que no presenta compatibilidad con la versión anterior.
 
@@ -14,7 +14,8 @@ Actualmente se utiliza la segunda revisión del estándar: IEEE 1588-2008 o
 
 El protocolo \gls{ptp} define una arquitectura jerárquica de tipo 
 maestro-esclavo. Al igual que en la red \gls{ntp}, el nodo raíz puede estar 
-conectado a una fuente estable de tiempo, como un \gls{gpsdo} o un reloj 
+conectado a una fuente estable de tiempo, como un \textit{\gls{gpsdo}} o un 
+reloj 
 atómico, y provee de sincronización al resto de la red. En el caso de \gls{ptp} 
 este nodo recibe el nombre de \acrlong{gm}. Los nodos intermedios pueden actuar 
 como maestros del nivel siguiente o como nodos finales. A continuación se 
@@ -176,7 +177,7 @@ especiales para el modo \textit{peer-to-peer}. Dado que actualmente el protoclo
 \gls{wr} solo implementa comunicación \textit{end-to-end} se omite la 
 explicación de los mismos, que puede ser consultada en \cite{IEEE1588_2008}.
 En la actualidad se está desarrollando el soporte para \textit{peer-to-peer} y 
-\gls{tc}, para más información se puede consultar \incomment{preguntar a JL}.
+\gls{tc}.
 
 \begin{figure}
 	\centering
@@ -228,7 +229,7 @@ encuentra en la gestión de las colas de recepción/envío que son fuente de
 retardos no deterministas. Gracias al sellado con soporte \textit{hardware} y 
 al tratamiento de los retardos ocasionados por las colas, \gls{ptp} consigue 
 una precisión de decenas de nanosegundos con las técnicas más avanzadas 
-actualmente. \incomment{referenciar algo}
+actualmente \cite{5340221}.
 
 
 

@@ -95,7 +95,7 @@ proceso realizando una petición al servidor como muestra la figura
 \ref{fig:ntpts}. El servidor recibe el paquete y lo sella en el instante $T_i$. 
 Para realizar los cálculos se emplean siempre las 4 marcas más recientes. Con 
 ello se puede realizar el cálculo del tiempo de ida y vuelta ($\delta_i$), y el 
-desfase del reloj ($theta_i$) del cliente con respecto al del sevidor en el 
+desfase del reloj ($\theta_i$) del cliente con respecto al del sevidor en el 
 instante de tiempo $T_i$:
 
 \begin{equation}\label{ntprtt}
@@ -104,9 +104,6 @@ instante de tiempo $T_i$:
 \begin{equation}
 	\theta_i = \frac{(T_{i-2}-T_{i-3}) + (T_{i-1}-T_{i})} {2}
 \end{equation}
-
-\incomment{es un poco lioso lo de verlo hacía atrás, lo he puesto así porque en 
-\cite{Mills1991} viene así pero si lo prefieres lo pongo al estilo de siempre.}
 
 Hay que tener en cuenta que el servidor no tiene por qué contestar a las 
 peticiones del cliente de forma inmediata. El proceso encargado de la gestión 
@@ -127,8 +124,8 @@ lo que hace que el tratamiento de las marcas de tiempo no sea determinista.
 Al ser \gls{ntp} un protocolo que se implementa completamente en 
 \textit{software}, no se consigue una gestión determinista para el cálculo del 
 desfase entre las dos entidades que se sincronizan. Ello conlleva una 
-limitación severa a la exactitud alcanzable mediante el uso de este protocolo 
-\incomment{Mejorar esa frase}. Aunque este hecho podría ser tratado mediante el 
+limitación severa a la precisión alcanzable mediante el uso de este protocolo. 
+Aunque este hecho podría ser tratado mediante el 
 uso de sistemas operativos de tiempo real o técnicas que consigan reducir la 
 latencia con la que el proceso encargado de la gestión del protocolo \gls{ntp} 
 es ejecutado, existe otro factor de diseño que tiene incluso más peso en la 
