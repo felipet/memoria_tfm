@@ -6,13 +6,12 @@ organizada en el tiempo. Mantener una noción común de tiempo es un factor clav
 en el que se basan muchas de las tecnologías que empleamos y de las que 
 dependemos en nuestro día a día.
 
-\incomment{El tiempo y la exactitud alcanzable como magnitud física.} Las 
-fuentes más estables fabricadas hasta la fecha son los llamados relojes
-atómicos. 
-\incomment{Definir.} Estos son capaces de mantener un nivel de exactitud del 
+Entre las 
+fuentes más estables fabricadas hasta la fecha se encuentran los llamados 
+relojes
+atómicos. Estos son capaces de mantener un nivel de exactitud del 
 orden de \gls{ns} por día, con una precisión igual a la frecuencia del
-transmisor de radio que bombea el láser. \incomment{Explicar mejor y
-referenciar.} \incomment{Encontrar ref a relojes ópticos de ROA}. Este tipo de 
+transmisor de radio que bombea el láser. Este tipo de 
 soluciones alcanza valores de exactitud y precisión muy notables, sin embargo, 
 su coste es muy elevado restringiendo el acceso a dichas fuentes de tiempo a la 
 mayoría de laboratorios e instituciones que lo precisan. Los centros de 
@@ -25,8 +24,11 @@ Actualmente existe un gran interés por parte de estas entidades en el
 desarrollo de tecnologías que permitan realizar una distribución de sus 
 referencias de tiempo de una manera estable y precisa.
 Además de la distribución de tiempo, el campo del posicionamiento terrestre es 
-otro de los grandes interesados en las tecnologías de sincronización. 
-\incomment{Hablar de GNSS}. Para estos sistemas, \incomment{...}
+otro de los grandes interesados en las tecnologías de sincronización. Sistemas 
+de distribución de tiempo como \gls{wr} permiten disponer de una fuente 
+redundante 
+en casos en los que la cobertura GPS sea anulada o para distribuir dicha 
+referencia en lugares como grandes edificios o zonas con pobre cobertura.
 
 El gran interés mostrado tanto en el ámbito académico como en el industrial por 
 mejorar los protocolos de sincronización actuales conlleva que cualquier 
@@ -36,64 +38,18 @@ atención en los últimos años gracias al buen equilibrio entre prestaciones y
 coste de la tecnología así como a la existencia de diseños de referencia 
 abiertos que fomentan el desarrollo de terceros.
 
-\section{Organización del trabajo}
-
-La línea de este Trabajo Fin de Máster se encuadra en la dirección de la 
-temática de mi futura tésis doctoral. Con la realización de este proyecto he 
-podido asentar las bases de lo que será este futuro trabajo de investigación. 
-Por un lado se ha detectado una posible vía de investigación en el ámbito de la 
-sincronización basada en \gls{wr}, en concreto el estudio de como mejorar la 
-arquitectura existente para lograr un sistema más eficiente, además de detectar 
-cuales son los puntos críticos que están limitando la mejora tanto en exactitud 
-como en precisión alcanzable por dicho protocolo. Por el otro, se ha podido 
-asentar la base de conocimiento tanto en la propia tecnología de sincronización 
-como en los aspectos relacionados: diseño basado en lógica reconfigurable, 
-sistemas de recuperación de reloj, fuentes de ruido electromagnético, etc. 
-Temas que serán de clave en la consecución final de la citada tésis doctoral.
-
-Por tanto, esta memoria refleja los primeros pasos necesarios para ello. La 
-estructura de la misma se divide en una serie de ocho capítulos donde se 
-introducen los conceptos teóricos clave para entender el contenido de esta 
-memoria, una rápida revisión al estado de la técnica en la materia de la 
-sincronización para redes basadas en el intercambio de paquetes, y los aspectos 
-relativos al desarrollo propiamente dicho.
-
-El primer capítulo realiza una introducción a los conceptos relativos al mundo 
-de la sincronización en redes. También se contextualiza el trabajo y se habla 
-de la importancia que tiene esta temática en las tecnologías presentes y 
-futuras. Por último se definen una serie de objetivos marcados para el 
-desarrollo de este TFM.
-
-En el segundo capítulo se explica la metodología de trabajo seguida y se 
-detallan tanto las herramientas \textit{hardware} y \textit{software} como el 
-equipo de laboratorio que se ha utilizado.
-
-Los capítulos tercero y cuarto contienen aspectos teóricos relativos a los 
-sistemas de distribución de tiempo que son necesarios para entender esta 
-memoria. También se introducen brevemente algunos conceptos sobre estabilidad y 
-medidas que se utilizan para caracterizar este tipo de sistemas. Además se hace 
-un rápido repaso por el estado de la técnica de los protocolos de 
-sincronización estándar más relevantes a lo largo de la historia de la 
-computación relacionados con la tecnología \gls{wr} sobre la que se centra este 
-trabajo.
-
-Una vez se han introducido todos los aspectos teóricos, se realiza un análisis 
-y caracterización de la arquitectura para nodos WR en el quinto capítulo. Los 
-resultados incluidos sirven de motivación para el desarrollo de la nueva 
-arquitectura propuesta en el capítulo sexto. En este capítulo se explica las 
-bases de la nueva arquitectura para nodos basada en sistemas SoC-FPGA, 
-explicando el desarrollo hecho hasta la fecha y realizando una serie de 
-propuestas de mejora para la línea de trabajo futuro.
-
-El capítulo séptimo pone el foco en la parte \textit{hardware} del sistema, 
-analizando el sistema de recuperación y generación de reloj en la que se 
-asienta la tecnología WR. Además se incluyen una serie de resultados obtenidos 
-del trabajo de caracterización y prueba de mejoras que se está realizando en la 
-línea.
-
-Para cerrar se incluyen las conclusiones generales del trabajo y una breve 
-discusión sobre la línea de trabajo futura con motivo de continuar lo que ha 
-sido el desarrollo realizado en el marco de una futura tésis doctoral.
+Actualmente existe un grupo de investigación relacionado con la temática de la 
+sincronización \gls{wr} dentro de la Universidad de Granada formado por varios 
+investigadores y estudiantes de doctorado que colaboran estrechamente con el 
+grupo BE-CO-HT del CERN donde nació esta tecnología. Además se colabora en 
+grandes proyectos científicos a nivel internacional: como el proyecto SKA 
+\cite{website:ska} dentro del grupo SADT encargado del diseño del sistema de 
+distribución de tiempo mediante WR; dentro del proyecto ASTERICS en el 
+subproyecto Cleopatra para el desarrollo de WR para interfaces 10G; y también 
+en proyectos de transferencia tecnológica que tiene el grupo TIC-117 con la 
+empresa Seven Solutions, concretamente en las subcontrataciones de los 
+proyectos EMC2 y World-TIming del programa Marco Europeo donde se desarrollan 
+nuevas funcionalidades y casos de uso de esta tecnología. 
 
 \section{Objetivos}
 
@@ -128,9 +84,70 @@ fin de poder conocer el sistema desde los tres puntos básicos:
 	encargada de la recuperación y generación de la señal de reloj fundamental 
 	de WR para realizar mejoras que permitan mejorar aún más la exactitud y 
 	precisión del protocolo.
+	
+	\item Relacionado con el objetivo anterior se busca también aprender a 
+	caracterizar las prestaciones de los dispositivos de distribución de tiempo 
+	mediante el uso de instrumentación especializada como osciloscopios, 
+	frecuencímetros, analizadores de espectro, etc. Haciendo hincapié en 
+	medidas especializadas en el ámbito de la sincronización como diagramas de 
+	\textit{Phase Noise}, medidas de Desviación de Allan, MTIE, entre otras.
 \end{itemize}
 
-\incomment{creo que son lo suficientemente ambigüos pero no quedo contento con 
-ellos, acepto sugerencias.}
+\input{teoria/02_Equipo_herramientas}
 
+\section{Organización del trabajo}
 
+La línea de este Trabajo Fin de Máster se encuadra en la dirección de la 
+temática de mi futura tésis doctoral. Con la realización de este proyecto he 
+podido asentar las bases de lo que será este futuro trabajo de investigación. 
+Por un lado se ha detectado una posible vía de investigación en el ámbito de la 
+sincronización basada en \gls{wr}, en concreto el estudio de como mejorar la 
+arquitectura existente para lograr un sistema más eficiente, además de detectar 
+cuales son los puntos críticos que están limitando la mejora tanto en exactitud 
+como en precisión alcanzable por dicho protocolo. Por el otro, se ha podido 
+asentar la base de conocimiento tanto en la propia tecnología de sincronización 
+como en los aspectos relacionados: diseño basado en lógica reconfigurable, 
+sistemas de recuperación de reloj, fuentes de ruido electromagnético, etc. 
+Temas que serán de clave en la consecución final de la citada tésis doctoral.
+
+Por tanto, esta memoria refleja los primeros pasos necesarios para ello. La 
+estructura de la misma se divide en una serie de siete capítulos donde se 
+introducen los conceptos teóricos clave para entender el contenido de esta 
+memoria, una rápida revisión al estado de la técnica en la materia de la 
+sincronización para redes basadas en el intercambio de paquetes, y los aspectos 
+relativos al desarrollo propiamente dicho.
+
+El primer capítulo realiza una introducción a los conceptos relativos al mundo 
+de la sincronización en redes. También se contextualiza el trabajo y se habla 
+de la importancia que tiene esta temática en las tecnologías presentes y 
+futuras, marcando una serie de objetivos para el desarrollo de este TFM.  En 
+otra sección del capítulo se expone la metodología de trabajo seguida y se 
+detallan tanto las herramientas \textit{hardware} y \textit{software} como el 
+equipo de laboratorio que se ha utilizado.
+
+Los capítulos segundo y tercero contienen aspectos teóricos relativos a los 
+sistemas de distribución de tiempo que son necesarios para entender esta 
+memoria. También se introducen brevemente algunos conceptos sobre estabilidad y 
+medidas que se utilizan para caracterizar este tipo de sistemas. Además se hace 
+un rápido repaso por el estado de la técnica de los protocolos de 
+sincronización estándar más relevantes a lo largo de la historia de la 
+computación relacionados con la tecnología \gls{wr} sobre la que se centra este 
+trabajo.
+
+Una vez se han introducido todos los aspectos teóricos, se realiza un análisis 
+y caracterización de la arquitectura para nodos WR en el cuarto capítulo. Los 
+resultados incluidos sirven de motivación para el desarrollo de la nueva 
+arquitectura propuesta en el capítulo quinto. En este capítulo se explica las 
+bases de la nueva arquitectura para nodos basada en sistemas SoC-FPGA, 
+explicando el desarrollo hecho hasta la fecha y realizando una serie de 
+propuestas de mejora para la línea de trabajo futuro.
+
+El capítulo sexto pone el foco en la parte \textit{hardware} del sistema, 
+analizando el sistema de recuperación y generación de reloj en la que se 
+asienta la tecnología WR. Además se incluyen una serie de resultados obtenidos 
+del trabajo de caracterización y prueba de mejoras que se está realizando en la 
+línea.
+
+Para cerrar se incluyen las conclusiones generales del trabajo y una breve 
+discusión sobre la línea de trabajo futura con motivo de continuar lo que ha 
+sido el desarrollo realizado en el marco de una futura tésis doctoral.
