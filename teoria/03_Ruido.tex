@@ -36,7 +36,8 @@ fuentes de perturbaciones que afectan de manera directa a la calidad de la
 sincronización. Los modelos matemáticos permiten tener una idea general del 
 comportamiento que tendrá el sistema, pero es necesario disponer de equipo de 
 laboratorio para realizar medidas de gran precisión a fin de caracterizar 
-correctamente las fuentes de ruido.
+correctamente las fuentes de ruido. La descripción realizada en este capítulo 
+sobre ruido está basada en \cite{Wlostowski2011}.
 
 En los siguientes apartados se introducen algunos términos clave para entender 
 los aspectos relacionados con las perturbaciones en un sistema WR, y en los 
@@ -47,8 +48,8 @@ resultados de las pruebas de rendimiento realizadas.
 \section{Ruido de fase y \textit{jitter}}
 
 Ya se ha mencionado que, como todo sistema en la vida real, el sistema de 
-recuperación de reloj puede ser sufrir pequeñas perturbaciones ocasionando 
-pequeños cambios en la frecuencia de oscilación de una fuente de reloj y 
+recuperación de reloj puede sufrir pequeñas perturbaciones ocasionando 
+leves cambios en la frecuencia de oscilación de una fuente de reloj y 
 también en la fase. El nombre que recibe este fenómeno en la literatura de 
 electrónica digital es \textit{jitter}, y no es más que lo dicho anteriormente, 
 la desviación de una señal con respecto a la ideal. La Figura \ref{fig:jitter} 
@@ -81,13 +82,13 @@ observan al medir el \textit{jitter}. La expresión matemática
 \end{figure}
 
 
-Dependiendo del tipo de análisis realizado y sobre todo de 
+En función del tipo de análisis realizado y sobre todo de 
 la fuente de ruido que se pretenda caracterizar, será más adecuado trabajar en 
 unos casos en el dominio de la frecuencia o en el del tiempo. Sin embargo no 
-siempre es posible hacerlo, dado que los aparatos necesarios para muchos de 
+siempre es posible hacerlo en el más idóneo, ya que los aparatos necesarios 
+para muchos de 
 estos análisis son bastante caros y es complicado disponer de ellos en el 
-laboratorio. \incomment{con esto cubro una posible pregunta para los resultados 
-de la cadena de por qué se tomaron con el osciloscopio y no con otra cosa} El 
+laboratorio. El 
 problema que tiene medir ruido de fase en el dominio del tiempo 
 (\textit{jitter}) es el caracter no estacionario del valor RMS del mismo, que 
 va creciendo con forme se aumenta el tiempo de medición.
@@ -97,7 +98,7 @@ va creciendo con forme se aumenta el tiempo de medición.
 	\includegraphics[width=0.7\linewidth]{imagenes/psd_noise}
 	\caption[Tipos de ruido en la curva PSD para un XO.]{Clasificación del tipo 
 	de ruido según la pendiente de la curva PSD para el ruido de fase de un 
-	oscilador}
+	oscilador. Imagen tomada de \cite{Wlostowski2011}.}
 	\label{fig:psdnoise}
 \end{figure}
 
@@ -118,7 +119,8 @@ La Figura \ref{fig:psdnoise} muestra los distintos tipos de ruido que se
 identifican por la pendiente de la curva PSD en una doble escala logarítmica. 
 En el eje de ordenadas se mide la potencia relativa a la señal portadora en dB, 
 y en las abcisas la frecuencia de desplazamiento con respecto a la frecuencia 
-portadora. \incomment{si hay tiempo hablar un poco del white noise y otros}
+portadora. Se puede consultar más información sobre este tipo de medidas y 
+otras características como la desviación de Allan o el MTIE en \cite{Riley1994}.
 
 Para obtener este tipo de medidas se necesita equipo bastante caro y preciso. 
 Recientemente se ha adquirido en el laboratorio del grupo de sincronización de 
@@ -127,9 +129,6 @@ realizar un estudio mucho más detallado que si sólo se hubiese utilizado un
 osciloscopio convencional. Sin embargo, en las primeras fases de este proyecto 
 no se contaba con dicho material por lo que se realizan las medidas que fueron 
 posibles en ese momento.
-
-\incomment{si hay un poco de tiempo mencionar ADEV y demás tipos y explicar 
-rápidamente}
 
 Para cerrar este capítulo me gustaría mencionar la diferencia entre el término 
 exactitud (\textit{accuracy} en la literatura) y el de precisión 
@@ -141,7 +140,7 @@ una señal del maestro, el PPS o un flanco de subida del reloj de referencia, y
 la del esclavo. Si se trabaja en el dominio del tiempo está diferencia se 
 expresa en segundos y en concreto, WR, lo que consigue es que dicha diferencia 
 sea menor al nanosegundo. Por otra parte hay que determinar la variación que 
-sufre dicha diferencia por motivo del \text{jitter} en las señales utilizadas 
+sufre dicha diferencia por motivo del \textit{jitter} en las señales utilizadas 
 para realizar tal medida. Esto es lo que se denomina precisión, y mide la 
 estabilidad de la señal generada. El objetivo de WR es que se mantenga en el 
 orden del picosegundo, lo que quiere decir que la variación en la señal 
