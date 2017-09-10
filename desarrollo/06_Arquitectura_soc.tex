@@ -39,11 +39,12 @@ características principales que debe poseer un SoC son:
 	los incorporados en los SoC de perfil bajo es suficiente para ofrecer la 
 	capacidad de cómputo necesaria para este tipo de aplicaciones.
 	
-	\item Transceiver \incomment{rellenar}
+	\item Transceiver compatible con la lógica de control de WR. En concreto se 
+	debe permitir sacar hacía la lógica reconfigurable el reloj recuperado del 
+	enlace.
 	
-	\item Interfaces DMA \incomment{rellenar}
-	
-	\incomment{pensar en más mierdas}
+	\item Interfaces DMA. Muy importante para el desarrollo de aplicaciones con 
+	necesidades de un gran ancho de banda.
 \end{itemize}
 
 Con estos requisitos la familia Zynq-7000 encaja perfectamente tanto a la hora 
@@ -59,23 +60,12 @@ coste reducido. Los componentes principales de esta familia son los siguientes:
 	\item Ethernet MAC configurable a 10/100/1000 
 \end{itemize}
 
-
-\subsection{Arquitectura de la Familia Zynq-7000}
-\incomment{arquitectura zynq-7, hablar un poco de los recursos y de como se 
-organizan los componentes}
-
-\subsection{Herramientas de desarrollo de Xilinx}
-\incomment{hablar del nuevo modelo de trabajo basado en vivado y las cajitas}
-
 \section{Migración y desarrollo de una arquitectura de nodo basada en SoC}
 
 El llamado \textit{\acrlong{wr} Zynq Embedded Node} (WR-ZEN) es la primera 
 plataforma que incorpora la nueva arquitectura para nodos basada en SoC. El 
 desarrollo se ha realizado en colaboración entre la empresa Seven Solutions y 
-el grupo de \textit{timing} de la UGR. \incomment{menciono esto para dejar 
-claro que se habla de desarrollo de cosas que no he hecho aunque se menciona de 
-forma ambigüa para dejar abierta la posibilidad de que se haya trabajado en 
-ello}Dicho dispositivo será utilizado como 
+el grupo de \textit{timing} de la UGR. Dicho dispositivo será utilizado como 
 elemento clave en el sistema de distribución de tiempo dentro del proyecto 
 internacional SKA \cite{website:ska}. En concreto formará parte del llamado 
 \textit{Signal and Data Transport (SaDT)} y se encargará de distribuir la señal 
@@ -150,8 +140,6 @@ para desarrolladores que necesiten trabajar sobre esta plataforma. El resultado
 es lo que se denomina \textit{root filesystem}, que no es más que una imagen 
 del sistema de ficheros Linux para el arranque de la tarjeta.
 
-\incomment{se puede hablar algo más de los módulos existentes (drivers)}
-
 \begin{figure}
 	\centering
 	\includegraphics[width=0.7\linewidth]{imagenes/cargazen}
@@ -223,8 +211,6 @@ este nuevo nodo ya que se han realizado varios cambios con respecto a la
 electrónica usual incluida en otros dispositivos WR como el \gls{wrs}, 
 \gls{spec} o LEN.
 
-\incomment{copiar aquí el párrafo de descripción del hw de la zen}
-
 El nuevo esquema de reloj así como los distintos componentes nuevos que han 
 sido introducidos me han permitido profundizar más en la electrónica de 
 recuperación y generación de reloj para poder buscar formas de reducir el ruido 
@@ -258,16 +244,14 @@ nivel de usuario, resulta que el \textit{sw} de control  necesita pasar primero
 por el puente AXI y luego por el bus Wishbone para llegar a los módulos en la 
 parte PL. Por ello se propone una nueva arquitectura que realiza un 
 aprovechamiento más eficiente de la nueva estructura de buses del SoC Zynq-7000 
-y que se muestra en la Figura ?? \incomment{meter aquí un diagrama con los 
-módulos colgando del AXI en vez del wb}. Para ello no habría que reimplementar 
+para eliminar los varios niveles de bus que existen en el diseño actual. Para 
+ello no habría que reimplementar 
 la lógica de los módulos en HDL, si no que sería necesario añadir una capa que 
 envuelva o reemplace la lógica de control pensada para el bus Wishbone por la 
 del bus AXI. Para facilitar dicha labor se puede desarrollar una herramienta 
 similar al \textit{wbgen2} que permita realizar una descripción de los 
 registros de un componente en HDL y esta se encarge de generar de forma 
 automática toda la lógica de control para la comunicación con el bus.
-
-\incomment{imagen del nuevo esquema con el bus axi}
 
 Sin embargo reemplazar por completo todos los componentes actuales no es algo 
 trivial. Hay que tener en cuenta la lógica de control del módulo 
@@ -291,9 +275,8 @@ nivel de prestaciones muy superior al alcanzable por la ejecución de un
 algoritmo \textit{sw} en un microprocesador. Sin embargo, hay que tener en 
 cuenta que todo el diseño de WR es relativamente nuevo y por tanto, hay 
 componentes que debido a su complejidad necesitan de una fase de implementación 
-y testeo compleja. Según notas del autor de dicho código \incomment{tomasz 
-tenía un documento que decía eso pero no lo encuentro por ningún lado 
-ahora...}, esa fue una de las razones por las que parte del algoritmo de 
+y testeo compleja. Según notas del autor de dicho código, esa fue una de las 
+razones por las que parte del algoritmo de 
 control se realizan en \textit{sw}. Dado que la tecnología ya cuenta con cierto 
 grado de madurez, y que las metodologías de desarrollo para la generación de 
 código en HDL han evolucionado mucho en los últimos años, se podría plantear 
@@ -334,5 +317,3 @@ gran relevancia internacional como SKA, ya que esto favorece la publicación de
 nuevos artículos científicos que tengan interés en la comunidad relacionados 
 con todo la investigación que se está haciendo en torno a este nuevo enfoque 
 para nodos WR.
-
-\incomment{ha quedado corto pero tampoco se donde me puedo estirar más}
