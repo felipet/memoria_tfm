@@ -1,1 +1,98 @@
-\chapter{Conclusión y trabajo futuro}
+\chapter{Conclusión}
+
+En la memoria se ha tratado la contribución al desarrollo de la nueva 
+arquitectura para nodos WR basada en sistemas SoC y de la mejora de la 
+electrónica encargada del sistema de generación de la señal de reloj usada como 
+referencia local en los dispositivos en el marco de este Trabajo Fin de Máster. 
+El trabajo realizado ha sido parte de publicaciones (citadas en el contexto de 
+la memoria) además de ser motivo de nuevas publicaciones que se están 
+desarrollando actualmente. A parte de la explicación de la nueva organización 
+de la arquitectura basada en SoC se han discutido las ventajas e inconvenientes 
+del nuevo diseño basado en SoC. También se han realizado una serie de 
+experimentos para comprobar las hipótesis planteadas cuyos resultados han 
+permitido verificar el funcionamiento del nuevo desarrollo basado en SoC, 
+reflejando además que queda aún trabajo por hacer para lograr los objetivos 
+propuestos para este nueva plataforma. En cuanto a los objetivos propuestos 
+para este TFM pienso que se han cumplido y prueba de ello son las publicaciones 
+asociadas al trabajo realizado.
+
+En el capítulo 5 se ha analizado la arquitectura previa para nodos WR. Además 
+del análisis teórico de las limitaciones que sufre la arquitectura usada, 
+basada en FPGA, se han realizado una serie de experimentos que han aportado 
+datos relevantes acerca del rendimiento del protocolo WR. Se ha podido 
+comprobar que la implementación actual del \gls{wrc2p} incluida en el WR-LEN 
+permite sincronizar con una exactitud por debajo del ns hasta 12 nodos 
+siguiendo una topología lineal. A parte, se ha buscado comprobar si existía una 
+limitación al número de nodos que podían ser sincronizados en cadena, aunque 
+fuese fuera del sub-nanosegundo, y se ha comprobado que el límite actual es de 
+18 nodos. La línea de trabajo futuro contempla mejorar el algoritmo de control 
+utilizado para la recuperación de la señal de reloj a fin de evitar esta 
+limitación observada.
+
+Parte de los resultados obtenidos en el quinto capítulo sirven de motivación 
+para el desarrollo de la nueva arquitectura basada en SoC-FPGA que se expone en 
+el capítulo 6. La primera fase de dicho desarrollo ha permitido migrar el 
+\textit{wrc2p} a este tipo de plataformas realizando adaptaciones para soportar 
+los cambios debidos a la nueva FPGA utilizada y al nuevo soporte de un SO en la 
+arquitectura de nodo. La otra parte del trabajo presentado es una discusión 
+sobre los cambios necesarios para realizar un mejor aprovechamiento de la nueva 
+arquitectura, eliminando elementos redundantes y simplificando el diseño 
+anterior que no tenía en cuenta el soporte de un microprocesador externo a la 
+FPGA.
+
+Por último se ha realizado una caracterización de las modificaciones realizadas 
+en el nodo WR-ZEN con motivo de comprobar si las hipótesis de diseño en cuanto 
+a prestaciones se han cumplido. Los datos obtenidos reflejan que el nuevo 
+diseño se comporta correctamente como nodo WR con un rendimiento comparable al 
+de otros nodos como el WR-LEN, pero se esperaba conseguir un rendimiento 
+superior debido a las mejoras incorporadas en el \textit{hardware}. El análisis 
+realizado ha permitido señalar que componentes deben ser mejorados para poder 
+conseguir dicho incremento en el rendimiento. En concreto se necesita optimizar 
+los parámetros que influyen en el algoritmo de control utilizado en WR para 
+calcular la diferencia entre la señal del reloj local y la recuperada del 
+dispositivo maestro. También se ha querido incluir la línea de trabajo actual 
+seguida por el CERN y que se está integrando en el dispositivo actualmente. Los 
+datos han reflejado que los cambios realizados permiten reducir notablemente el 
+nivel de ruido del sistema, abriendo la puerta a este tipo de dispositivos para 
+su aplicación en desarrollos con requisitos de temporización bastante estrictos.
+
+Para concluir hacer un breve repaso sobre los objetivos marcados al inicio del 
+trabajo. Realizar el estado de la técnica ha sido clave para entender la 
+evolución de los protocolos de sincronización y los cambios que ha introducido 
+el protocolo WR para poder solventar los problemas existentes en los protocolos 
+precedentes. Las limitaciones han sido evaluadas de forma teórica y práctica 
+mediante la ejecución de una serie de pruebas que además fueron publicadas en 
+un congreso internacional. Por último los estudios relativos a la nueva 
+arquitectura y del sistema de recuperación y generación de la señal fundamental 
+de reloj me han permitido realizar un estudio crítico en ambos campos 
+culminando en la proposición de una serie de mejoras que serán parte de mi 
+línea de trabajo futura.
+
+\section{Trabajo futuro}
+
+A la vez que he ido analizando la problemática de cada sección he ido 
+introduciendo las posibles soluciones que permiten mejorar las limitaciones 
+actuales. A continuación recordaré a modo de resumen los puntos principales.
+
+La implementación actual para la arquitectura basada en SoC no realiza un 
+aprovechamiento óptimo de la nueva plataforma. En la fase inicial de la 
+migración de la arquitectura de nodo de un sistema basado únicamente en FPGA a 
+otro en SoC-FPGA se ha tratado de mantener la estructura del \gls{wrc2p} para 
+facilitar la tarea de migración. La siguiente fase debe aprovechar el soporte 
+del microprocesador ARM y de la estructura de buses existentes en el SoC para 
+trasladar los módulos WR que actualmente se interconectan por medio del bus 
+Wishbone al nivel superior de la jerarquía. Para ello será necesario adaptar la 
+lógica de control de Wishbone a AXI. Además será necesario investigar si la 
+parte del bucle de control para el cálculo del desfase se puede llevar al ARM o 
+si los requisitos de determinismo impiden tal cosa. En caso de no poder migrar 
+el \textit{sw} de control al ARM se podrían explorar otras alternativas como la 
+implemtación en HDL a partir de algún lenguaje de descripción \textit{hw} de 
+alto nivel como System-C.
+
+Además si se pretende extender el uso de la nueva arquitectura en aplicaciones 
+con requisitos de estabilidad mayores a los que los dispositivos actuales 
+pueden ofrecer, es necesario investigar en la línea de nuevos esquemas de reloj 
+para el sistema de generación del reloj referencia o la mejora de alguna de las 
+partes como es el caso del módulo GM. El trabajo en esta línea necesita 
+determinar que componentes contribuyen de manera más significativa al ruido del 
+sistema para buscar soluciones al respecto.
